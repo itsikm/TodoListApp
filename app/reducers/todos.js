@@ -13,8 +13,8 @@ const initialState = [
     {id: 3, title: 'Watch NBA final', createdAt: new Date(), status: 'open'},
     {id: 4, title: 'Buy supprise egg', createdAt: new Date(), status: 'open'},
     {id: 5, title: 'Watch Iron Man 3', createdAt: new Date(), status: 'open'},
-    {id: 5, title: 'Todo In Progress', createdAt: new Date(), status: 'progress'},
-    {id: 5, title: 'Done with this shit!', createdAt: new Date(), status: 'done'}
+    {id: 6, title: 'Todo In Progress', createdAt: new Date(), status: 'progress'},
+    {id: 7, title: 'Done with this shit!', createdAt: new Date(), status: 'done'}
 ];
 
 /**
@@ -44,10 +44,10 @@ export default (state = initialState, action = {}) => {
         case 'todo/status':
             return state.map(item => {
                 if(item.id === action.id){
-                    return { ...item, status: action.status }
+                    return { ...item, status: action.status };
                 }
 
-                return item
+                return item;
             });
 
         /**
