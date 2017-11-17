@@ -1,3 +1,6 @@
+/**
+ * Import Dependencies
+ */
 import _ from 'lodash';
 
 /**
@@ -14,44 +17,30 @@ const initialState = [
     {id: 5, title: 'Done with this shit!', createdAt: new Date(), status: 'done'}
 ];
 
+/**
+ * Todo Reducer
+ * @param {Object} state
+ * @param {Object} action
+ * @returns {*}
+ */
 export default (state = initialState, action = {}) => {
     switch (action.type) {
+
+        /**
+         * Add New Todo
+         */
         case 'todo/add':
             return [...state, {
-                id: action.id,
+                id: Object.keys(state).length,
                 title: action.title,
                 createdAt: new Date(),
                 completedAt: null,
                 status: 'open'
             }];
 
-        case 'todo/open':
-            return state.map(item => {
-                if(item.id === action.id){
-                    return { ...item, status: 'open' }
-                }
-
-                return item
-            });
-
-        case 'todo/start':
-            return state.map(item => {
-                if(item.id === action.id){
-                    return { ...item, status: 'progress' }
-                }
-
-                return item
-            });
-
-        case 'todo/done':
-            return state.map(item => {
-                if(item.id === action.id){
-                    return { ...item, status: 'done' }
-                }
-
-                return item
-            });
-
+        /**
+         * Change Todo Status
+         */
         case 'todo/status':
             return state.map(item => {
                 if(item.id === action.id){
@@ -61,11 +50,17 @@ export default (state = initialState, action = {}) => {
                 return item
             });
 
+        /**
+         * Remove Todo
+         */
         case 'todo/remove':
             return _.remove(state, (n) => {
                 return n.id !== action.id;
             });
 
+        /**
+         * Return default state
+         */
         default:
             return state;
     }
