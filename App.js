@@ -1,10 +1,12 @@
+/**
+ * Import Dependencies
+ */
 import React from 'react';
 import {
     createStore,
     applyMiddleware
 } from 'redux';
 import {Provider} from 'react-redux';
-import ReduxThunk from 'redux-thunk';
 import SceneContainer from './app/containers/SceneContainer';
 import Reducers from './app/reducers';
 
@@ -18,8 +20,7 @@ import { AppLoading, Font } from 'expo';
  * @type {Store<GenericStoreEnhancer>}
  */
 const store = createStore(
-    Reducers,
-    applyMiddleware(ReduxThunk)
+    Reducers
 );
 
 /**

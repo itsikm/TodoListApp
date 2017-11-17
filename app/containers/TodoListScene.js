@@ -7,6 +7,21 @@ import { ListView } from 'react-native';
 import { Container, Header, Content, Button, Icon, List, ListItem, Text } from 'native-base';
 
 /**
+ * Action Icons
+ */
+const actionIcons = {
+    open: 'md-paper',
+    progress: 'md-checkmark',
+    done: 'md-refresh'
+};
+
+const nextStatus = {
+    open: 'progress',
+    progress: 'done',
+    done: 'open'
+}
+
+/**
  * TodoList Scene
  */
 class TodoListScene extends Component {
@@ -47,28 +62,11 @@ class TodoListScene extends Component {
      * @returns {XML}
      */
     renderRightHiddenRow (data, secId, rowId, rowMap) {
-        switch (this.props.status) {
-            case 'open':
-                return (
-                    <Button full onPress={_ => this.rowAction('changeTodoStatus', {id: data.id, status: 'progress'}, secId, rowId, rowMap)}>
-                        <Icon active name="md-paper"/>
-                    </Button>
-                );
-
-            case 'progress':
-                return (
-                    <Button full success onPress={_ => this.rowAction('changeTodoStatus', {id: data.id, status: 'done'}, secId, rowId, rowMap)}>
-                        <Icon active name="md-checkmark"/>
-                    </Button>
-                );
-
-            case 'done':
-                return (
-                    <Button full onPress={_ => this.rowAction('changeTodoStatus', {id: data.id, status: 'open'}, secId, rowId, rowMap)}>
-                        <Icon active name="md-refresh"/>
-                    </Button>
-                );
-        }
+        return (
+            <Button full onPress={_ => this.rowAction('changeTodoStatus', {id: data.id, status: nextStatus[this.props.status]}, secId, rowId, rowMap)}>
+                <Icon active name={actionIcons[this.props.status]}/>
+            </Button>
+        );
     }
 
     /**
@@ -96,6 +94,7 @@ class TodoListScene extends Component {
                         }
                         leftOpenValue={75}
                         rightOpenValue={-75}
+                        enableEmptySections={true}
                     />
                 </Content>
             </Container>
