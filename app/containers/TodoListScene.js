@@ -82,7 +82,7 @@ class TodoListScene extends Component {
                         renderRow={
                             data =>
                                 <ListItem style={{padding: 20}}>
-                                    <Icon active name="ios-square-outline" style={{fontSize: 20, marginRight: 10}}/><Text> {data.title} </Text>
+                                    <Icon active name="ios-medical-outline" style={{fontSize: 20, marginRight: 10}}/><Text> {data.title} </Text>
                                 </ListItem>
                         }
                         renderRightHiddenRow={this.renderRightHiddenRow.bind(this)}
