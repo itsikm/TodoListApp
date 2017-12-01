@@ -78,7 +78,7 @@ class TodoListScene extends Component {
             <Container>
                 <Content>
                     <List
-                        dataSource={this.ds.cloneWithRows(this.props.todos.filter(t => t.status == this.props.status))}
+                        dataSource={this.ds.cloneWithRows(this.props.todos.filter(t => t.status === this.props.status))}
                         renderRow={
                             data =>
                                 <ListItem style={{padding: 20}}>
@@ -88,7 +88,7 @@ class TodoListScene extends Component {
                         renderRightHiddenRow={this.renderRightHiddenRow.bind(this)}
                         renderLeftHiddenRow={
                             (data, secId, rowId, rowMap) =>
-                                <Button full danger onPress={_ => this.rowAction('removeToDo', data.id, secId, rowId, rowMap)}>
+                                <Button full danger onPress={_ => this.rowAction('removeToDo', data, secId, rowId, rowMap)}>
                                     <Icon active name="trash"/>
                                 </Button>
                         }
